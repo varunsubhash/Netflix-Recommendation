@@ -325,6 +325,376 @@ Total No of movies  : 17757</br>
 
 - We take only those top similar movie ratings and store them  in a saperate dictionary.</br>
 
+
+<h3> 3.4.3 Finding most similar movies using similarity matrix </h3>
+
+- We shall check if similarity really works as the way we expected by picking some randomn movie and check for its similiar movies.</br>
+
+- We took a randomn movie Id 67 and the deatils of it were obtained as shown below.</br>
+ 
+     - Movie -----> Vampire Journals</br>
+
+    - It has 270 Ratings from users.</br>
+
+    - We have 17284 movies which are similar to this and we will get only top most.</br>
+    
+ - On plotting the number of movies vs cosine similiarity for the above movie we get the below graph.</br>
+ 
+ ![](Capture_12.PNG)
+ 
+ - Similarly we can find similar users and find how similar they are.</br>
+ 
+  <h1> 4.  Machine Learning Models </h1>
+  
+  <h2> 4.1 Sampling Data </h2>
+  
+   - We build sample train data from the train data.</br>
+   - We are taking 10k x 1k instead of 405k x 17k.</br>
+   - We are taking 5k x 500 instaed of349k x 17k.</br>.
+   - This is to check the best method./br>.
+   
+   <h2>4.2 Finding Global Average of all movie ratings, Average rating per User, and Average rating per Movie (from sampled train)</h2>
+   
+   - The global average of ratings in the test set 3.581679377504138.</br>.
+   - We are finding average rating per user.</br>
+   - Finding Average rating per Movie.</br>
+   
+   
+   - Reading from the file to make a Train_dataframe</br>.
+   
+   - We will have the below features</br>.
+   
+   - __GAvg__ : Average rating of all the ratings </br>
+
+
+   - __Similar users rating of this movie__:- sur1, sur2, sur3, sur4, sur5 ( top 5 similar users who rated that movie.. )</br>
+    
+
+
+   - __Similar movies rated by this user__: - smr1, smr2, smr3, smr4, smr5 ( top 5 similar movies rated by this movie.. )</br>
+
+
+   - __UAvg__ : User's Average rating</br>
+
+
+   - __MAvg__ : Average rating of this movie</br>.
+
+
+   - __rating__ : Rating of this movie by this use</br>.
+   
+   
+ - The same is repeated for test set</br>.
+ 
+ <h3> 4.3.2 Transforming data for Surprise models</h3>
+ 
+ <h4> 4.3.2.1 Transforming train data </h4>
+ 
+ - We can't give raw data (movie, user, rating) to train the model in Surprise library.</br>
+
+- They have a seperate format for TRAIN and TEST data, which will be useful for training the models like SVD, KNNBaseLineOnly....etc..,in Surprise.</br>
+
+- We can form the trainset from a file, or from a Pandas  DataFrame.</br>
+
+<h2> 4.4 Applying Machine Learning models </h2>
+
+<h3> 4.4.1 XGBoost with initial 13 features </h3>
+
+- Training the model..</br>
+- Done. Time taken : 0:00:01.795787</br>
+
+Done 
+
+Evaluating the model with TRAIN data...</br>
+Evaluating Test data</br>
+
+TEST DATA</br>
+------------------------------
+RMSE :  1.0761851474385373</br>
+MAPE :  34.504887593204884</br>
+
+- We get the below feature importance.
+
+![](Capture_12.PNG)
+
+
+<h3> 4.4.2 Suprise BaselineModel </h3>
+
+- We get the below results after applying the baseline model.</br>
+
+Training the model...</br>
+Estimating biases using sgd...</br>
+Done. time taken : 0:00:00.822391 </br>
+
+Evaluating the model with train data..</br>
+time taken : 0:00:01.116752</br>
+---------------
+Train Data</br>
+---------------
+RMSE : 0.9347153928678286</br>
+
+MAPE : 29.389572652358183</br>
+
+adding train results in the dictionary..</br>
+
+Evaluating for test data...</br>
+time taken : 0:00:00.074418</br>
+---------------
+Test Data</br>
+---------------
+RMSE : 1.0730330260516174</br>
+
+MAPE : 35.04995544572911</br>
+
+storing the test results in test dictionary...</br>
+
+---------------------------------------------
+Total time taken to run this algorithm : 0:00:02.014073</br>
+
+<h3> 4.4.3 XGBoost with initial 13 features + Surprise Baseline predictor </h3>
+
+- We add our baseline_predicted value as our feature to both train and test data.</br> 
+
+- We get the below results.</br>
+
+Training the model..</br>
+Done. Time taken : 0:00:02.388635</br>
+
+Done </br>
+
+Evaluating the model with TRAIN data...</br>
+Evaluating Test data</br>
+
+TEST DATA</br>
+------------------------------
+RMSE :  1.0763419061709816</br>
+MAPE :  34.491235560745295</br>
+
+- The feature importance graph is as shown below.</br>
+
+![](Capture_13.PNG)
+
+<h3> 4.4.4 Surprise KNNBaseline predictor </h3>
+
+- But we use shrunk Pearson-baseline correlation coefficient, which is based on the pearsonBaseline similarity ( we take base line predictions instead of mean rating of user/item).</br>
+
+<h4> 4.4.4.1 Surprise KNNBaseline with user user similarities</h4>
+
+- We get the below results.</br>
+
+Training the model...</br>
+Estimating biases using sgd...</br>
+Computing the pearson_baseline similarity matrix...</br>
+Done computing similarity matrix.</br>
+Done. time taken : 0:00:30.173847 </br>
+
+Evaluating the model with train data..</br>
+time taken : 0:01:35.970614</br>
+---------------
+Train Data</br>
+---------------
+RMSE : 0.33642097416508826</br>
+
+MAPE : 9.145093375416348</br>
+
+adding train results in the dictionary..</br>
+
+Evaluating for test data...</br>
+time taken : 0:00:00.075213</br>
+---------------
+Test Data</br>
+---------------
+RMSE : 1.0726493739667242</br>
+
+MAPE : 35.02094499698424</br>
+
+storing the test results in test dictionary...</br>
+
+<h4> 4.4.4.2 Surprise KNNBaseline with movie movie similarities</h4>
+
+- We get the below results.</br>
+
+Training the model...</br></br>
+Estimating biases using sgd...</br>
+Computing the pearson_baseline similarity matrix...</br>
+Done computing similarity matrix.</br>
+Done. time taken : 0:00:01.093096 </br>
+
+Evaluating the model with train data..</br>
+time taken : 0:00:07.964272</br>
+---------------
+Train Data</br>
+---------------
+RMSE : 0.32584796251610554</br>
+
+MAPE : 8.447062581998374</br>
+
+adding train results in the dictionary..</br>
+
+Evaluating for test data...</br>
+time taken : 0:00:00.075229</br>
+---------------
+Test Data</br>
+---------------
+RMSE : 1.072758832653683</br>
+
+MAPE : 35.02269653015042</br>
+
+storing the test results in test dictionary...</br>
+
+<h3> 4.4.5 XGBoost with initial 13 features + Surprise Baseline predictor + KNNBaseline predictor </h3>
+
+-  First we will run XGBoost with predictions from both KNN's ( that uses User\_User and Item\_Item similarities along with our previous features.</br>
+
+ 
+-  Then we will run XGBoost with just predictions form both knn models and preditions from our baseline model.</br>
+
+- We get the below results.</br>
+
+  Training the model..</br>
+  Done. Time taken : 0:00:02.092387</br>
+
+  Done </br>
+
+  Evaluating the model with TRAIN data...</br>
+  Evaluating Test data</br>
+
+ TEST DATA</br>
+ ------------------------------
+ RMSE :  1.0763602465199797</br>
+ MAPE :  34.48862808016984</br>
+
+
+- The feature importnace is shown as below.
+
+![](Capture_14.PNG)
+
+<h3> 4.4.6 Matrix Factorization Techniques </h3></br>
+
+<h4> 4.4.6.1 SVD Matrix Factorization User Movie intractions </h4></br>
+
+- We get the below results.</br>
+
+Evaluating the model with train data..</br>
+time taken : 0:00:01.305539</br>
+---------------
+Train Data</br>
+---------------
+RMSE : 0.6574721240954099</br>
+
+MAPE : 19.704901088660474</br>
+
+adding train results in the dictionary..</br>
+
+Evaluating for test data...</br>
+time taken : 0:00:00.067811</br>
+---------------
+Test Data</br>
+---------------
+RMSE : 1.0726046873826458</br>
+
+MAPE : 35.01953535988152</br>
+
+storing the test results in test dictionary...</br>
+
+<h4> 4.4.6.2 SVD Matrix Factorization with implicit feedback from user ( user rated movies ) </h4>
+
+- __Optimization problem with user item interactions and regularization (to avoid overfitting)__
+    - 
+    - $ \large \sum_{r_{ui} \in R_{train}} \left(r_{ui} - \hat{r}_{ui} \right)^2 +
+\lambda\left(b_i^2 + b_u^2 + ||q_i||^2 + ||p_u||^2 + ||y_j||^2\right) $ 
+
+- We get the below results.</br>
+
+Evaluating the model with train data..</br>
+time taken : 0:00:06.387920</br>
+---------------
+Train Data</br>
+---------------
+RMSE : 0.6032438403305899</br>
+
+MAPE : 17.49285063490268</br>
+
+adding train results in the dictionary..</br>
+
+Evaluating for test data...</br>
+time taken : 0:00:00.071642</br>
+---------------
+Test Data</br>
+---------------
+RMSE : 1.0728491944183447</br>
+
+MAPE : 35.03817913919887</br>
+
+storing the test results in test dictionary...</br>
+
+<h3> 4.4.7 XgBoost with 13 features + Surprise Baseline + Surprise KNNbaseline + MF Techniques </h3>
+
+- We get the below results.</br>
+
+Training the model..</br>
+Done. Time taken : 0:00:04.203252</br>
+
+Done </br>
+
+Evaluating the model with TRAIN data...</br>
+Evaluating Test data</br>
+
+TEST DATA</br>
+------------------------------
+RMSE :  1.0763580984894978</br>
+MAPE :  34.487391651053336</br>
+
+- The features importance is shown below.</br>
+
+![](Capture_15.PNG)
+
+<h3> 4.4.8 XgBoost with Surprise Baseline + Surprise KNNbaseline + MF Techniques </h3>
+- We get the below results.</br>
+- Training the model..</br>
+Done. Time taken : 0:00:01.292225</br>
+
+Done </br>
+
+Evaluating the model with TRAIN data...</br>
+Evaluating Test data</br>
+
+TEST DATA</br>
+------------------------------
+RMSE :  1.075480663561971</br>
+MAPE :  35.01826709436013</br>
+
+- The feature importance is as shown below.</br>
+
+![](Capture_16.PNG)
+
+<h2> 4.5 Comparision between all models </h2>
+
+- Final comparison is shown as below.
+
+  svd               1.0726046873826458</br>
+  knn_bsl_u         1.0726493739667242</br>
+  knn_bsl_m          1.072758832653683</br>
+  svdpp             1.0728491944183447</br>
+  bsl_algo          1.0730330260516174</br>
+  xgb_knn_bsl_mu    1.0753229281412784</br>
+  xgb_all_models     1.075480663561971</br>
+  first_algo        1.0761851474385373</br>
+  xgb_bsl           1.0763419061709816</br>
+  xgb_final         1.0763580984894978</br>
+  xgb_knn_bsl       1.0763602465199797</br>
+
+
+
+
+
+
+
+
+
+
+
+
+
  
   
   
