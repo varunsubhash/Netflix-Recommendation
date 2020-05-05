@@ -145,11 +145,11 @@ It can also seen as a Regression problem
 
 <h2> 3.1 Preprocessing</h2> 
 
-<h3>3.1.1 Converting / Merging whole data to required format: u_i, m_j, r_ij</h3>
+- Here we are converting / merging whole data to required format: u_i, m_j, r_ij</h3></br>
 
-<h3>3.1.2 Checking for NaN values </h3>
+- We checking for NaN values and make sure all are deleted.</br>
 
-<h3>3.1.3 Removing Duplicates </h3>
+-  Removing Duplicates is also done.</br>
 
 <h3>3.1.4 Basic Statistics (#Ratings, #Users, and #Movies)</h3>
 
@@ -173,8 +173,32 @@ Total No of movies  : 17757</br>
 
  <h2> 3.3 Exploratory Data Analysis on Train data </h2>
  
- <h3> 3.3.1 Distribution of ratings </h3>
-count    405041.000000</br>
+ <h3> 3.3.1 Distribution of ratings over training set.</h3></br>
+ 
+   ![](Capture_1.PNG)
+   
+ - We add a new column (week day) to the data set for analysis 'day_of_week'.</br>
+ 
+ <h3> 3.3.2 Number of Ratings per a month </h3></br>
+ 
+  ![](Capture_2.PNG)
+  
+  <h3> 3.3.3 Analysis on the Ratings given by user </h3></br>
+  
+ - Below are the ratings the top number of movies rated by a particular user.</br>
+ 
+ user
+305344     17112
+2439493    15896
+387418     15402
+1639792     9767
+1461435     9447
+ 
+ - The CDF and PDF are plotted below for the number of ratings per user.</br>
+ 
+ - When we use the describe function we get the below results.</br>
+ 
+ count    405041.000000</br>
 mean        198.459921</br>
 std         290.793238</br>
 min           1.000000</br>
@@ -182,6 +206,8 @@ min           1.000000</br>
 50%          89.000000</br>
 75%         245.000000</br>
 max       17112.000000</br>
-
-
-![](Capture_1.PNG)
+ 
+ - Looks like we may have to inspect the percentile to see how many values are abnormally high.</br>
+ - On plotting value at quantiles vs no of ratings by users, we get the below plot. </br>
+ 
+ ![](Capture_2.PNG)
