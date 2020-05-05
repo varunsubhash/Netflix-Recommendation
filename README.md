@@ -301,6 +301,29 @@ Total No of movies  : 17757</br>
  - We have  **405,041 users** in out training set and computing similarities between them..( **17K dimensional vector..**) is time consuming.</br>
     
  - Instead, we will try to reduce the dimentsions using SVD, so that it might speed up the process.</br>
+ - We reduced the dimensions to 500 which explained 65 percent of the variance.
+ - While running however it took more time than the earlier method.
+ 
+ - An alternative is to compute similar users for a particular user,  whenenver required (**ie., Run time**)</br>
+ - We maintain a binary Vector for users, which tells us whether we already computed or not.</br>
+ - If not we compute top (let's just say, 1000) most similar users for this given user, and add this to our datastructure, so that we      can just access it(similar users) without recomputing it again.</br>
+ - If it is already computed.</br>
+        - Just get it directly from our datastructure, which has that information.
+        - In production time, we might have to recompute similarities, if it is computed a long time ago. Because user preferences                 changes over time. If we could maintain some kind of timer, which when expires, we have to update it ( recompute it ). 
+        - It is purely implementation dependant. </br>
+ - The data structure that  we can use is to maintain a dictionary Of dictionaries.We can do it in the below manner.
+       - key : userid</br>
+       - value : Again a dictionary</br>
+       - key : Similar User</br>
+       - value : Similarity Value</br>
+       
+ <h3> 3.4.2 Computing Movie-Movie Similarity matrix </h3>
+
+- Even though we have similarity measure of each movie, with all other movies, We generally don't care much about least similar movies.</br>.
+
+- Most of the times, only top_xxx similar items matters. It may be 10 or 100.</br>
+
+- We take only those top similar movie ratings and store them  in a saperate dictionary.</br>
 
  
   
