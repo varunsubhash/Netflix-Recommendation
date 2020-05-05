@@ -211,3 +211,100 @@ Total No of movies  : 17757</br>
  - On plotting value at quantiles vs no of ratings by users, we get the below plot. </br>
  
  ![](Capture_3.PNG)
+ 
+ - We can tell that the last 5 percentile of users have given  extremly high no of ratings and total number of ratings at last 5 percentile : 20305 </br>
+ 
+ 
+ <h3> 3.3.4 Analysis of ratings of a movie given by a user </h3>
+ 
+ - On plotting ratings per movie we get the below graph. </br>
+ 
+ ![](Capture_4.PNG)
+ 
+ - It is very skewed.. just like nunmber of ratings given per user.</br>
+ - There are some movies (which are very popular) which are rated by huge number of users.</br>
+ - But most of the movies(like 90%) got some hundereds of ratings.</br>
+ 
+ <h3> 3.3.5 Number of ratings on each day of the week</h3>
+ 
+ - On plotting number of users per day we get the below graph.</br>
+ 
+ ![](Capture_5.PNG)
+ 
+ - Now plotting box plot for ratings given for each day of the week. </br>
+ 
+  ![](Capture_6.PNG)
+  
+  - The average we see below shows that there is not much of a difference here.
+  
+  AVerage ratings</br>
+------------------------------
+ day_of_week</br>
+ Friday       3.585274</br>
+ Monday       3.577250</br>
+ Saturday     3.591791</br>
+ Sunday       3.594144</br>
+ Thursday     3.582463</br>
+ Tuesday      3.574438</br>
+ Wednesday    3.583751</br>
+ 
+ <h3> 3.3.6 Creating sparse matrix from data frame </h3>
+ 
+ - Since its a sparse matrix and without compressing we would require very high space.Hence we use compressed sparse matrix.</br>
+ 
+ <h3>3.3.7 Finding Global average of all movie ratings, Average rating per user, and Average rating per movie</h3>
+ 
+ <h4> 3.3.7.1 finding global average of all movie ratings </h4></br>
+  - {'global': 3.582890686321557}</br>
+  
+ <h4> 3.3.7.2 finding average rating per user</h4></br>
+ - Average rating of user 10 : 3.3781094527363185 </br>
+ 
+ <h4> 3.3.7.3 finding average rating per movie</h4></br>
+ - Average rating of movie 15 : 3.3038461538461537</br>
+ 
+ <h4> 3.3.7.4 PDF's & CDF's of Avg.Ratings of Users & Movies (In Train Data)</h4>
+  - We get the below plot.</br>
+  
+   ![](Capture_7.PNG)
+   
+ <h3> 3.3.8 Cold Start problem </h3>
+ 
+ <h4> 3.3.8.1 Cold Start problem with Users</h4>
+ 
+    Total number of Users  : 480189</br>
+
+    Number of Users in Train data : 405041</br>
+
+    No of Users that didn't appear in train data: 75148(15.65 %)</br> 
+    
+  - We might have to handle new users ( 75148 ) who didn't appear in train data.</br>
+  
+  <h4> 3.3.8.2 Cold Start problem with Movies</h4></br>
+  
+    Total number of Movies  : 17770</br>
+
+    Number of Users in Train data : 17424</br>
+
+    No of Movies that didn't appear in train data: 346(1.95 %) </br>
+    
+  - We might have to handle 346 movies (small comparatively) in test data.</br>
+  
+ <h2> 3.4 Computing Similarity matrices </h2>
+ 
+ <h3> 3.4.1 Computing User-User Similarity matrix </h3>
+ 
+ -  Calculating User User Similarity_Matrix is not easy  because of  number of users being large.
+ 
+ <h4> 3.4.1.2 Trying with reduced dimensions (Using TruncatedSVD for dimensionality reduction of user vector)</h4>
+ 
+ - We have  **405,041 users** in out training set and computing similarities between them..( **17K dimensional vector..**) is time consuming.</br>
+    
+ - Instead, we will try to reduce the dimentsions using SVD, so that it might speed up the process.</br>
+
+ 
+  
+  
+ 
+ 
+ 
