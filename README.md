@@ -138,8 +138,8 @@ It can also seen as a Regression problem
 
 <h3> 2.2.3 Machine Learning Objective and Constraints </h3>
 
-1. Minimize RMSE.
-2. Try to provide some interpretability.
+1. Minimize RMSE.</br>
+2. Try to provide some interpretability.</br>
 
 <h1> 3. Exploratory Data Analysis </h1>
 
@@ -153,33 +153,32 @@ It can also seen as a Regression problem
 
 <h3>3.1.4 Basic Statistics (#Ratings, #Users, and #Movies)</h3>
 
-Total no of ratings : 100480507
-Total No of Users   : 480189
-Total No of movies  : 17770
+Total no of ratings : 100480507</br>
+Total No of Users   : 480189</br>
+Total No of movies  : 17770</br>
 
 <h2>3.2 Spliting data into Train and Test(80:20) </h2>
 
 <h3>3.2.1 Basic Statistics in Train data (#Ratings, #Users, and #Movies)</h3>
 
-Total no of ratings : 80384405
-Total No of Users   : 405041
-Total No of movies  : 17424
+Total no of ratings : 80384405</br>
+Total No of Users   : 405041</br>
+Total No of movies  : 17424</br>
 
 <h3>3.2.2 Basic Statistics in Test data (#Ratings, #Users, and #Movies)</h3>
 
-Total no of ratings : 20096102
-Total No of Users   : 349312
-Total No of movies  : 17757
+Total no of ratings : 20096102</br>
+Total No of Users   : 349312</br>
+Total No of movies  : 17757</br>
 
  <h2> 3.3 Exploratory Data Analysis on Train data </h2>
  
  <h3> 3.3.1 Distribution of ratings </h3>
- 
-  count    405041.000000
+count    405041.000000</br>
 mean        198.459921</br>
-std         290.793238
-min           1.000000
-25%          34.000000
-50%          89.000000
-75%         245.000000
-max       17112.000000
+std         290.793238</br>
+min           1.000000</br>
+25%          34.000000</br>
+50%          89.000000</br>
+75%         245.000000</br>
+max       17112.000000</br>
