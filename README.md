@@ -198,16 +198,16 @@ Total No of movies  : 17757</br>
  
  - When we use the describe function we get the below results.</br>
  
- count    405041.000000</br>
-mean        198.459921</br>
-std         290.793238</br>
-min           1.000000</br>
-25%          34.000000</br>
-50%          89.000000</br>
-75%         245.000000</br>
-max       17112.000000</br>
+   count    405041.000000</br>
+   mean        198.459921</br>
+   std         290.793238</br>
+   min           1.000000</br>
+   25%          34.000000</br>
+   50%          89.000000</br>
+   75%         245.000000</br>
+   max       17112.000000</br>
  
  - Looks like we may have to inspect the percentile to see how many values are abnormally high.</br>
  - On plotting value at quantiles vs no of ratings by users, we get the below plot. </br>
  
- ![](Capture_2.PNG)
+ ![](Capture_3.PNG)
