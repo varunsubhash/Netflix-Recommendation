@@ -176,7 +176,7 @@ Total No of movies  : 17757
  <h3> 3.3.1 Distribution of ratings </h3>
  
   count    405041.000000
-mean        198.459921
+mean        198.459921</br>
 std         290.793238
 min           1.000000
 25%          34.000000
